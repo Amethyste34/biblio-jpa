@@ -1,8 +1,7 @@
 package entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "livre")  // correspond exactement au nom de la table dans la BDD
@@ -14,6 +13,10 @@ public class Livre {
     private String auteur;
 
     public Livre() {} // obligatoire pour JPA
+
+    // Relation entre Livre et Emprunt
+    @ManyToMany(mappedBy = "livres")
+    private List<Emprunt> emprunts;
 
     // Getters et setters
     public Integer getId() { return id; }
