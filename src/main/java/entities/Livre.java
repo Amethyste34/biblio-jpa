@@ -1,12 +1,14 @@
 package entities;
 
 import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.util.Set;
 import java.util.HashSet;
 
 @Entity
 @Table(name = "livre")  // correspond exactement au nom de la table dans la BDD
-public class Livre {
+public class Livre implements Serializable {
 
     @Id
     private Integer id;

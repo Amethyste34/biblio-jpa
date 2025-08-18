@@ -1,13 +1,15 @@
 package entities;
 
 import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Set;
 import java.util.HashSet;
 
 @Entity
 @Table(name = "emprunt")
-public class Emprunt {
+public class Emprunt implements Serializable {
     @Id
     private Integer id;
 

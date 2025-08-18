@@ -1,12 +1,14 @@
 package entities;
 
 import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.util.Set;
 import java.util.HashSet;
 
 @Entity
 @Table(name = "client")
-public class Client {
+public class Client implements Serializable {
 
     @Id
     private Integer id;
