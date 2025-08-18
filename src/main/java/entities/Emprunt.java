@@ -2,7 +2,8 @@ package entities;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 @Entity
 @Table(name = "emprunt")
@@ -26,12 +27,14 @@ public class Emprunt {
 
     // Relation avec Livre
     @ManyToMany
-    @JoinTable(name = "compo",
+    @JoinTable(
+            name = "compo",
             joinColumns = @JoinColumn(name = "ID_EMP"),
-            inverseJoinColumns = @JoinColumn(name = "ID_LIV"))
-    private List<Livre> livres;
+            inverseJoinColumns = @JoinColumn(name = "ID_LIV")
+    )
+    private Set<Livre> livres = new HashSet<>();
 
-    // COnstructeru vide
+    // Constructeur vide
     public Emprunt() {}
 
     // Getters et Setters
@@ -50,8 +53,8 @@ public class Emprunt {
     public Client getClient() { return client; }
     public void setClient(Client client) { this.client = client; }
 
-    public List<Livre> getLivres() { return livres; }
-    public void setLivres(List<Livre> livres) { this.livres = livres; }
+    public Set<Livre> getLivres() { return livres; }
+    public void setLivres(Set<Livre> livres) { this.livres = livres; }
 
     @Override
     public String toString() {
@@ -61,6 +64,7 @@ public class Emprunt {
                 ", dateFin=" + dateFin +
                 ", delai=" + delai +
                 ", client=" + (client != null ? client.getNom() : "null") +
+                ", nbLivres=" + livres.size() +
                 '}';
     }
 }

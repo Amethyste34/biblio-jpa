@@ -1,7 +1,8 @@
 package entities;
 
 import jakarta.persistence.*;
-import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 @Entity
 @Table(name = "client")
@@ -18,7 +19,7 @@ public class Client {
 
     // Relation avec Emprunt
     @OneToMany(mappedBy = "client")
-    private List<Emprunt> emprunts;
+    private Set<Emprunt> emprunts = new HashSet<>();
 
     // Constructeur vide obligatoire
     public Client() {}
@@ -48,11 +49,11 @@ public class Client {
         this.prenom = prenom;
     }
 
-    public List<Emprunt> getEmprunts() {
+    public Set<Emprunt> getEmprunts() {
         return emprunts;
     }
 
-    public void setEmprunts(List<Emprunt> emprunts) {
+    public void setEmprunts(Set<Emprunt> emprunts) {
         this.emprunts = emprunts;
     }
 
@@ -62,6 +63,7 @@ public class Client {
                 "id=" + id +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
+                ", emprunts=" + emprunts.size() +
                 '}';
     }
 }
